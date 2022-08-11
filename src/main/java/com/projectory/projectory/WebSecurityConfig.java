@@ -12,6 +12,17 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 @Configuration
 public class WebSecurityConfig {
+	public static InMemoryUserDetailsManager user_manager = new InMemoryUserDetailsManager();
+
+	WebSecurityConfig() {
+		UserDetails user = User.withDefaultPasswordEncoder()
+				.username("user")
+				.password("password")
+				.roles("USER")
+				.build();
+		user_manager.createUser(user);
+	}
+
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		http.csrf().disable();
@@ -33,12 +44,7 @@ public class WebSecurityConfig {
 
 	@Bean
 	public InMemoryUserDetailsManager userDetailService() {
-		UserDetails user = User.withDefaultPasswordEncoder()
-				.username("user")
-				.password("password")
-				.roles("USER")
-				.build();
-		return new InMemoryUserDetailsManager(user);
+		return user_manager;
 	}
 
 }
