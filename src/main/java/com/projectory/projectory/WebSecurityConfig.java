@@ -9,6 +9,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.authentication.logout.HttpStatusReturningLogoutSuccessHandler;
 
 @Configuration
 public class WebSecurityConfig {
@@ -41,7 +42,8 @@ public class WebSecurityConfig {
 				.and()
 				.exceptionHandling().authenticationEntryPoint(new APIAccessDeniedHandler())
 				.and()
-				.logout().logoutUrl("/auth/logout").permitAll();
+				.logout().logoutUrl("/auth/logout").logoutSuccessHandler(new HttpStatusReturningLogoutSuccessHandler())
+				.permitAll();
 		return http.build();
 	}
 
