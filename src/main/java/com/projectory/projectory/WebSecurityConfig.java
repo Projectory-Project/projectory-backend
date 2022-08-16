@@ -27,16 +27,19 @@ public class WebSecurityConfig {
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		http.csrf().disable();
 		http.cors().disable();
+		http.httpBasic().disable();
 		http.addFilterAt(new UsernamePasswordAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class)
 				.authorizeRequests()
 				.antMatchers(HttpMethod.GET, "/server_version").permitAll()
 				.antMatchers(HttpMethod.POST, "/auth/login", "/auth/register").permitAll()
-				.antMatchers(HttpMethod.GET, "/user").hasRole("USER")
+				.antMatchers(HttpMethod.GET, "/users/**").hasRole("USER")
 				.anyRequest().authenticated()
 				.and()
-				.formLogin().loginProcessingUrl("/testlogin").usernameParameter("username")
+				.formLogin().loginProcessingUrl("/auth/login").usernameParameter("username")
 				.passwordParameter("password")
-				.successHandler(new LoginSuccessHandler()).failureHandler(new LoginFailtureHandler())
+				.successHandler(new LoginSuccessHandler()).failureHandler(new LoginFailureHandler())
+				.and()
+				.exceptionHandling().authenticationEntryPoint(new APIAccessDeniedHandler())
 				.and()
 				.logout().logoutUrl("/auth/logout").permitAll();
 		return http.build();
