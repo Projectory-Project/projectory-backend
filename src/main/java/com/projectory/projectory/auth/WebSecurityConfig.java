@@ -1,4 +1,4 @@
-package com.projectory.projectory;
+package com.projectory.projectory.auth;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

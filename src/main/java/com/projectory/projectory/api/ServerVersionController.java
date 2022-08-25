@@ -1,4 +1,4 @@
-package com.projectory.projectory;
+package com.projectory.projectory.api;
 
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestMapping;

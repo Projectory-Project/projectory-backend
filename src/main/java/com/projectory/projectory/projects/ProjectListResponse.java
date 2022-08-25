@@ -1,4 +1,4 @@
-package com.projectory.projectory;
+package com.projectory.projectory.projects;
 
 import java.util.ArrayList;
 

@@ -1,4 +1,4 @@
-package com.projectory.projectory;
+package com.projectory.projectory.auth;
 
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.access.AccessDeniedHandler;

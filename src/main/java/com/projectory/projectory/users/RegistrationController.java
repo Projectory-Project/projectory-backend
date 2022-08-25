@@ -1,10 +1,12 @@
-package com.projectory.projectory;
+package com.projectory.projectory.users;
 
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.projectory.projectory.auth.WebSecurityConfig;
 
 @RestController
 public class RegistrationController {

@@ -1,4 +1,4 @@
-package com.projectory.projectory;
+package com.projectory.projectory.projects;
 
 class ProjectListEntry {
 	private String project_name, id;

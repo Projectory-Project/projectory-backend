@@ -1,4 +1,4 @@
-package com.projectory.projectory;
+package com.projectory.projectory.api;
 
 public class ServerVersionResponse {
 	private String version_string;
